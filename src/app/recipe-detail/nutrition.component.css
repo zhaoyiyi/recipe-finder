@@ -1,3 +1,10 @@
+md-card {
+  width: 350px;
+}
+
+.nutrition {
+ }
+
 h2 {
   margin-bottom: 0;
 }
@@ -6,7 +13,7 @@ p {
 }
 
 .nutrition-table {
-  width: 350px;
+  width: 100%;
   text-align: left;
   border-collapse: collapse;
 }
