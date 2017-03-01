@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { SearchService } from './search.service';
 import { Router } from '@angular/router';
 import { RecipeService } from '../shared/recipe.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
-  providers: [SearchService],
 })
 export class SearchComponent implements OnInit {
 
-  recipeList: any = null;
+  recipeList: Observable<any> = null;
 
   constructor(
     private searchService: SearchService,
@@ -20,6 +20,8 @@ export class SearchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('search init');
+    this.recipeList = this.searchService.getLastSearchResult();
   }
 
   search(text: string) {

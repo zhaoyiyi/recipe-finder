@@ -1,4 +1,8 @@
-<p>
-  recipe-detail works!
-  {{recipe | json}}
-</p>
+
+<a routerLink="/search">Back</a>
+
+<app-nutrition
+  [totalDaily]="recipe.totalDaily"
+  [totalNutrients]="recipe.totalNutrients"
+  [totalWeight]="recipe.totalWeight"
+></app-nutrition>

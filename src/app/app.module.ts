@@ -9,12 +9,17 @@ import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeService } from './shared/recipe.service';
+import { NutritionComponent } from './recipe-detail/nutrition.component';
+import { NutritionPipe } from './recipe-detail/nutrition.pipe';
+import { SearchService } from './search/search.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
-    RecipeDetailComponent
+    RecipeDetailComponent,
+    NutritionComponent,
+    NutritionPipe
   ],
   imports: [
     BrowserModule,
@@ -23,7 +28,7 @@ import { RecipeService } from './shared/recipe.service';
     MaterialModule,
     AppRoutingModule,
   ],
-  providers: [RecipeService],
+  providers: [RecipeService, SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

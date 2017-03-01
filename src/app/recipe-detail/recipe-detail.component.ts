@@ -15,5 +15,4 @@ export class RecipeDetailComponent implements OnInit {
   ngOnInit() {
     this.recipe = this.recipeService.currentRecipe;
   }
-
 }
