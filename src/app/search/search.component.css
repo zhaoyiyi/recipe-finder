@@ -1,0 +1,17 @@
+.recipe-list {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.recipe-card {
+  width: 300px;
+  margin-right: 2rem;
+  margin-bottom: 1rem;
+}
+
+.recipe-card md-chip {
+  margin: 0.25rem;
+}
+
