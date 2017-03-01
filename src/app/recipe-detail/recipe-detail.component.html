@@ -1,8 +1,28 @@
-
 <a routerLink="/search">Back</a>
-
-<app-nutrition
-  [totalDaily]="recipe.totalDaily"
-  [totalNutrients]="recipe.totalNutrients"
-  [totalWeight]="recipe.totalWeight"
-></app-nutrition>
+<md-toolbar color="primary">
+  <span>Custom Toolbar</span>
+</md-toolbar>
+<section class="recipe-detail">
+  <md-card class="header">
+    <img src="{{ recipe.image }}" alt="">
+    <div>
+      <h1>{{ recipe.label }}</h1>
+      <a md-raised-button href="{{ recipe.url }}" target="_blank">See Instructions on {{ recipe.source }}</a>
+      <button md-raised-button>Add to shopping list</button>
+    </div>
+  </md-card>
+  <md-card class="ingredients">
+    <md-list>
+      <h3 md-subheader>{{ recipe.ingredientLines.length }} Ingredients</h3>
+      <md-divider></md-divider>
+      <md-list-item *ngFor="let ingred of recipe.ingredientLines">
+        <p md-line> {{ ingred }} </p>
+      </md-list-item>
+    </md-list>
+  </md-card>
+  <app-nutrition
+    [totalDaily]="recipe.totalDaily"
+    [totalNutrients]="recipe.totalNutrients"
+    [totalWeight]="recipe.totalWeight"
+  ></app-nutrition>
+</section>
