@@ -5,7 +5,10 @@
   <button md-raised-button (click)="search(searchInput.value)">Search</button>
 
   <div class="recipe-list" *ngIf="(recipeList | async)?.length > 0">
-    <md-card class="recipe-card" *ngFor="let r of (recipeList | async)">
+    <md-card class="recipe-card"
+             *ngFor="let r of (recipeList | async)"
+             (click)="navigateToDetail(r.recipe)"
+    >
       <md-card-header>
         <md-card-title>{{r.recipe.label}}</md-card-title>
         <md-card-subtitle>{{r.recipe.source}}</md-card-subtitle>
