@@ -18,3 +18,13 @@
 img:hover {
   cursor: pointer;
 }
+
+form {
+  text-align: center;
+  margin: 1rem;
+}
+
+.hint {
+  color: grey;
+  text-align: center;
+}

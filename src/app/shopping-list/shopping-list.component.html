@@ -1,4 +1,8 @@
-<section class="shopping-list">
+<section *ngIf="getRecipes().length < 1">
+  <h2>Please go to search page and add something to shopping list first</h2>
+</section>
+
+<section class="shopping-list" *ngIf="getRecipes().length > 0">
   <md-tab-group class="recipes">
     <md-tab label="Selected Recipes">
       <md-list>
@@ -43,6 +47,6 @@
   </md-tab-group>
 </section>
 
-<app-shopping-actions>
+<app-shopping-actions *ngIf="getRecipes().length > 0">
 
 </app-shopping-actions>

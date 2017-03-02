@@ -6,6 +6,10 @@
     <button md-raised-button type="submit">Search</button>
   </form>
 
+  <div class="hint" *ngIf="(recipeList | async)?.length <= 0">
+    <h2>Search some recipes to start...</h2>
+  </div>
+
   <div class="recipe-list" *ngIf="(recipeList | async)?.length > 0">
     <md-card class="recipe-card"
              *ngFor="let r of (recipeList | async)">
