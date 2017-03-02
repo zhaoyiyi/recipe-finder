@@ -7,8 +7,7 @@
 
 .recipe-card {
   width: 300px;
-  margin-right: 2rem;
-  margin-bottom: 1rem;
+  margin: 0 1rem 1rem;
 }
 
 .recipe-card md-chip {
