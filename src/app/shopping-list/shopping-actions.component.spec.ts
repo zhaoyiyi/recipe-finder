@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShoppingActionsComponent } from './shopping-actions.component';
+import { MdDialog } from '@angular/material';
+
+const mdDialogStub = {};
 
 describe('ShoppingActionsComponent', () => {
   let component: ShoppingActionsComponent;
@@ -8,9 +11,12 @@ describe('ShoppingActionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShoppingActionsComponent ]
+      declarations: [ShoppingActionsComponent],
+      providers: [
+        {provide: MdDialog, useValue: mdDialogStub}
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

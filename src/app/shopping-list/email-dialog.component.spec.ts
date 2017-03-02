@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EmailDialogComponent } from './email-dialog.component';
+import { MaterialModule, MdDialogRef } from '@angular/material';
+
+const mdDialogRefStub = {};
 
 describe('EmailDialogComponent', () => {
   let component: EmailDialogComponent;
@@ -8,9 +11,13 @@ describe('EmailDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EmailDialogComponent ]
+      imports: [MaterialModule],
+      declarations: [EmailDialogComponent],
+      providers: [
+        {provide: MdDialogRef, useValue: mdDialogRefStub}
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

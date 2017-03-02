@@ -8,7 +8,8 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 const routes: Routes = [
   {path: 'search', component: SearchComponent},
   {path: 'recipe-detail', component: RecipeDetailComponent},
-  {path: 'shopping-list', component: ShoppingListComponent}
+  {path: 'shopping-list', component: ShoppingListComponent},
+  {path: '', redirectTo: '/search', pathMatch: 'full'},
 ];
 
 @NgModule({

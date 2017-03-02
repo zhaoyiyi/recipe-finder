@@ -1,6 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShoppingListComponent } from './shopping-list.component';
+import { MaterialModule } from '@angular/material';
+import { RecipeService } from '../shared/recipe.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+const recipeServiceStub = {
+  shoppingList: {},
+  checkIngredient() {}
+};
 
 describe('ShoppingListComponent', () => {
   let component: ShoppingListComponent;
@@ -8,9 +16,14 @@ describe('ShoppingListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShoppingListComponent ]
+      imports: [MaterialModule],
+      declarations: [ShoppingListComponent],
+      providers: [
+        {provide: RecipeService, useValue: recipeServiceStub}
+      ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

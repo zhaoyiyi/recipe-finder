@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NutritionComponent } from './nutrition.component';
+import { NutritionPipe } from './nutrition.pipe';
+import { MaterialModule } from '@angular/material';
 
 describe('NutritionComponent', () => {
   let component: NutritionComponent;
@@ -8,14 +10,18 @@ describe('NutritionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NutritionComponent ]
+      imports: [MaterialModule],
+      declarations: [NutritionComponent, NutritionPipe]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NutritionComponent);
     component = fixture.componentInstance;
+    component.totalDaily = {};
+    component.totalNutrients = {};
+    component.totalWeight = 456;
     fixture.detectChanges();
   });
 

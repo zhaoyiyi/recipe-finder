@@ -1,11 +1,21 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { SearchService } from './search.service';
+import { Http } from '@angular/http';
+
+const httpStub = {
+  get() {
+
+  }
+};
 
 describe('SearchService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SearchService]
+      providers: [
+        SearchService,
+        {provide: Http, useValue: httpStub}
+      ]
     });
   });
 

@@ -15,3 +15,6 @@
   margin: 0.25rem;
 }
 
+img:hover {
+  cursor: pointer;
+}
