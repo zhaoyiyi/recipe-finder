@@ -8,20 +8,37 @@ import { RecipeService } from '../shared/recipe.service';
 })
 export class ShoppingListComponent implements OnInit {
 
-  shoppingList: Object = {};
+  recipes: Object = {};
   selectedRecipe: any = {};
+  overviewIndex = 0;
 
   constructor(private recipeService: RecipeService) {
 
   }
 
   ngOnInit() {
-    this.shoppingList = this.recipeService.shoppingList;
+    this.recipes = this.recipeService.shoppingList;
   }
 
-  selectRecipe(recipe) {
+  checkIngredient(ingredientName) {
+    this.recipeService.checkIngredient(this.selectedRecipe, ingredientName);
+  }
+
+  getRecipes() {
+    return Object.keys(this.recipes).map(key => this.recipes[key]);
+  }
+
+  getShoppingList() {
+    return this.getRecipes()
+      .map(recipe => {
+        const ingredients = recipe.ingredients.filter(ingred => !ingred.isChecked);
+        return Object.assign({}, recipe, {ingredients});
+      });
+  }
+
+  onRecipeClick(recipe) {
+    this.overviewIndex = 0;
     this.selectedRecipe = recipe;
   }
-
 
 }

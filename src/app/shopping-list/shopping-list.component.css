@@ -1,0 +1,19 @@
+.shopping-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.recipes {
+  width: 400px;
+  height: 70vh;
+}
+
+.overview {
+  width: 600px;
+  height: 70vh;
+}
+
+.overview p {
+  padding: 0 1rem;
+}
