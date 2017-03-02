@@ -1,8 +1,9 @@
-# RecipeFinder
+# [RecipeFinder](http://recipe-finder.yizhao.me)
 A simple app that finds recipes and generates create grocery list. Built with Angular.
 
 API used: [Edamam Recipe Search API](https://developer.edamam.com/edamam-docs-recipe-api)
 
+`npm install`
 
 ## Instructions
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.0.
