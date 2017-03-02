@@ -1,3 +1,26 @@
-<p>
-  shopping-list works!
-</p>
+<md-list>
+  <md-list-item *ngFor="let recipe of (shoppingList | objectValue)">
+    <button (click)="selectRecipe(recipe)" md-line md-button>{{ recipe.label }}</button>
+  </md-list-item>
+</md-list>
+
+<md-tab-group>
+  <md-tab label="{{ selectedRecipe.label }} Ingredients" *ngIf="selectedRecipe">
+    <p *ngFor="let ingred of selectedRecipe.ingredients">
+      <md-checkbox md-line [(ngModel)]="ingred.isChecked">
+        {{ ingred.name }}
+      </md-checkbox>
+    </p>
+  </md-tab>
+  <md-tab label="All Ingredients">
+    <md-list>
+      <template ngFor let-recipe [ngForOf]="(shoppingList | objectValue)">
+        <h3 md-subheader>{{ recipe.label }}</h3>
+        <md-list-item *ngFor="let ingred of recipe.ingredients">
+          <p>{{ ingred.name }}</p>
+        </md-list-item>
+        <md-divider></md-divider>
+      </template>
+    </md-list>
+  </md-tab>
+</md-tab-group>

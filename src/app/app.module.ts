@@ -14,6 +14,7 @@ import { NutritionPipe } from './recipe-detail/nutrition.pipe';
 import { SearchService } from './search/search.service';
 import { BackButtonDirective } from './shared/back-button.directive';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { ObjectValuePipe } from './shared/object-value.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
     NutritionComponent,
     NutritionPipe,
     BackButtonDirective,
-    ShoppingListComponent
+    ShoppingListComponent,
+    ObjectValuePipe
   ],
   imports: [
     BrowserModule,
