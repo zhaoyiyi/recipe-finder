@@ -12,6 +12,7 @@ import { RecipeService } from './shared/recipe.service';
 import { NutritionComponent } from './recipe-detail/nutrition.component';
 import { NutritionPipe } from './recipe-detail/nutrition.pipe';
 import { SearchService } from './search/search.service';
+import { BackButtonDirective } from './shared/back-button.directive';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SearchService } from './search/search.service';
     SearchComponent,
     RecipeDetailComponent,
     NutritionComponent,
-    NutritionPipe
+    NutritionPipe,
+    BackButtonDirective
   ],
   imports: [
     BrowserModule,
