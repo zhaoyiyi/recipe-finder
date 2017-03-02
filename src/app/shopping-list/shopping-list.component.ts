@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../shared/recipe.service';
 
+
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
@@ -13,7 +14,6 @@ export class ShoppingListComponent implements OnInit {
   overviewIndex = 0;
 
   constructor(private recipeService: RecipeService) {
-
   }
 
   ngOnInit() {

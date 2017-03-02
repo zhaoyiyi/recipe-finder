@@ -14,6 +14,8 @@ import { NutritionPipe } from './recipe-detail/nutrition.pipe';
 import { SearchService } from './search/search.service';
 import { BackButtonDirective } from './shared/back-button.directive';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { ShoppingActionsComponent } from './shopping-list/shopping-actions.component';
+import { EmailDialogComponent } from './shopping-list/email-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
     NutritionPipe,
     BackButtonDirective,
     ShoppingListComponent,
+    ShoppingActionsComponent,
+    EmailDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,8 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
     AppRoutingModule,
   ],
   providers: [RecipeService, SearchService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [EmailDialogComponent]
 })
 export class AppModule {
 }
