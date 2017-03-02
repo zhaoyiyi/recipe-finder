@@ -1,6 +1,9 @@
 md-card {
   margin-bottom: 1rem;
 }
+a[appBackButton] {
+  margin-bottom: 2rem;
+}
 .header {
   width: 100%;
   display: flex;

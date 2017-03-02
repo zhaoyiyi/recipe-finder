@@ -1,12 +1,13 @@
-<a md-raised-button appBackButton color="accent">Back</a>
+<a md-raised-button appBackButton>Back</a>
 
 <section class="recipe-detail">
   <md-card class="header">
     <img src="{{ recipe.image }}" alt="">
     <div>
       <h1>{{ recipe.label }}</h1>
-      <a md-raised-button href="{{ recipe.url }}" target="_blank">See Instructions on {{ recipe.source }}</a>
-      <button md-raised-button>Add to shopping list</button>
+      <a md-raised-button color="accent" href="{{ recipe.url }}" target="_blank">See Instructions on {{ recipe.source }}</a>
+      <button md-raised-button (click)="addToShoppingList(recipe)" *ngIf="!isInShoppingList">Add to shopping list</button>
+      <button md-raised-button (click)="addToShoppingList(recipe)" *ngIf="isInShoppingList">Remove from shopping list</button>
     </div>
   </md-card>
   <md-card class="ingredients">
