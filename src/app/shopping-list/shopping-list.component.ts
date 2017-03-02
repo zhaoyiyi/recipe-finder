@@ -41,4 +41,8 @@ export class ShoppingListComponent implements OnInit {
     this.selectedRecipe = recipe;
   }
 
+  onRemoveRecipe(recipe) {
+    this.recipeService.removeFromShoppingList(recipe);
+  }
+
 }

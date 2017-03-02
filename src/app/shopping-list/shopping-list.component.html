@@ -8,6 +8,7 @@
       <md-list>
         <md-list-item *ngFor="let recipe of getRecipes()">
           <button (click)="onRecipeClick(recipe)" md-line md-button>{{ recipe.label }}</button>
+          <button md-button (click)="onRemoveRecipe(recipe)"><md-icon>close</md-icon></button>
         </md-list-item>
       </md-list>
     </md-tab>
