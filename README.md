@@ -1,4 +1,7 @@
 # [RecipeFinder](http://recipe-finder.yizhao.me)
+
+[Vue.js Version](https://github.com/zhaoyiyi/recipe-finder-vue)
+
 A simple app that finds recipes and generates create grocery list. Built with Angular.
 
 API used: [Edamam Recipe Search API](https://developer.edamam.com/edamam-docs-recipe-api)
