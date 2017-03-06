@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecipeService } from '../shared/recipe.service';
-import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-search',
@@ -14,13 +13,9 @@ import { Observable } from 'rxjs/Observable';
         <button md-raised-button type="submit">Search</button>
       </form>
     
-      <div class="hint" *ngIf="(recipeList | async)?.length <= 0">
-        <h2>Search some recipes to start...</h2>
-      </div>
-    
-      <div class="recipe-list" *ngIf="(recipeList | async)?.length > 0">
+      <div class="recipe-list">
         <md-card class="recipe-card"
-                 *ngFor="let recipe of (recipeList | async)">
+                 *ngFor="let recipe of recipeList">
           <md-card-header>
             <md-card-title>{{recipe.label}}</md-card-title>
             <md-card-subtitle>{{recipe.source}}</md-card-subtitle>
@@ -64,19 +59,23 @@ import { Observable } from 'rxjs/Observable';
 })
 export class SearchComponent implements OnInit {
 
-  recipeList: Observable<any> = null;
+  recipeList;
 
   constructor( private router: Router,
               private recipeService: RecipeService) { }
 
   ngOnInit() {
-    this.recipeList = this.recipeService.getLastSearchResult();
+    this.recipeService.searchResult.subscribe(
+      result => {
+        this.recipeList = result;
+      }
+    );
   }
   search(text: string) {
-    this.recipeList = this.recipeService.getRecipe(text);
+    this.recipeService.getRecipe(text);
   }
   navigateToDetail(recipe) {
-    this.recipeService.selectRecipe(recipe)
+    this.recipeService.selectRecipe(recipe);
     this.router.navigate(['/recipe-detail']);
   }
 }

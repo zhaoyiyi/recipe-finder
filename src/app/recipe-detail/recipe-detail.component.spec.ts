@@ -7,7 +7,7 @@ import { RecipeService } from '../shared/recipe.service';
 
 const recipeServiceStub = {
   currentRecipe: {
-    ingredientLines: []
+    subscribe() {}
   },
   isInList() {
     return false;

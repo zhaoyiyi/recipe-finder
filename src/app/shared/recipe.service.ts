@@ -7,8 +7,8 @@ const API_URL = 'https://api.edamam.com/search?app_id=fcfe9462&app_key=dc6cb1d31
 
 @Injectable()
 export class RecipeService {
-  searchResult = [];
   shoppingList = {};
+  searchResult = new BehaviorSubject([]);
   currentRecipe = new BehaviorSubject({});
 
   constructor(private http: Http) { }
@@ -57,8 +57,8 @@ export class RecipeService {
     this.currentRecipe.next(Object.assign({}, recipe, {portion}, {adjustedIngredients}));
   }
 
-  getRecipe(text: string): Observable<Array<any>> {
-    return this.http.get(`${API_URL}&q=${text}`)
+  getRecipe(text: string): void {
+    this.http.get(`${API_URL}&q=${text}`)
       .map(res => res.json().hits)
       .map(recipes => recipes.map(r => {
         const portion = r.recipe.yield;
@@ -77,9 +77,8 @@ export class RecipeService {
           }
         }, {portion});
       }))
-      .map(result => {
-        this.searchResult = result;
-        return this.searchResult;
+      .subscribe(result => {
+        this.searchResult.next(result);
       });
   }
 

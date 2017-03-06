@@ -6,15 +6,11 @@ import { MaterialModule } from '@angular/material';
 import { RecipeService } from '../shared/recipe.service';
 import { Router } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
-
-const searchServiceStub = {
-  getLastSearchResult() {
-    return Observable.of({});
-  }
-};
 const recipeServiceStub = {
-  getRecipe() {}
+  getRecipe() {},
+  searchResult: {
+    subscribe() {},
+  },
 };
 const routerStub = {
   navigate() {}
