@@ -60,30 +60,13 @@ export class RecipeService {
   getRecipe(text: string): void {
     this.http.get(`${API_URL}&q=${text}`)
       .map(res => res.json().hits)
-      .map(recipes => recipes.map(r => {
-        const portion = r.recipe.yield;
-        // get per unit values
-        const totalNutrients = this.getPerUnitValue(r.recipe.totalNutrients, 1 / portion);
-        const totalDaily = this.getPerUnitValue(r.recipe.totalDaily, 1 / portion);
-        const totalWeight = Math.round(r.recipe.totalWeight / portion);
-        const ingredients = r.recipe.ingredientLines.map(ingred => this.updateIngredients(ingred, 1 / portion));
-
-        return Object.assign({}, r.recipe, {
-          perUnit: {
-            totalNutrients,
-            totalDaily,
-            totalWeight,
-            ingredients
-          }
-        }, {portion});
-      }))
-      .subscribe(result => {
-        this.searchResult.next(result);
-      });
-  }
-
-  getLastSearchResult() {
-    return Observable.of(this.searchResult);
+      .map(recipes => recipes.map(r => this.processData(r.recipe)))
+      .subscribe(
+        result => {
+          this.searchResult.next(result);
+        },
+        e => console.log(e)
+      );
   }
 
   getPerUnitValue(nutrients: any, portion: number) {
@@ -93,8 +76,6 @@ export class RecipeService {
     });
     return perUnitNutrient;
   }
-
-
 
   private updateIngredients(ingred: string, multiplier: number): string {
     return ingred.replace(/\d+[./]?\d*/g, match => {
@@ -107,4 +88,21 @@ export class RecipeService {
     }).replace(/(\d+\.?\d+) (\d+\.?\d+)/g, (match, a, b) => (+a / +b).toString());
   }
 
+  private processData(recipe) {
+    const portion = recipe.recipe.yield;
+    // get per unit values
+    const totalNutrients = this.getPerUnitValue(recipe.recipe.totalNutrients, 1 / portion);
+    const totalDaily = this.getPerUnitValue(recipe.recipe.totalDaily, 1 / portion);
+    const totalWeight = Math.round(recipe.recipe.totalWeight / portion);
+    const ingredients = recipe.recipe.ingredientLines.map(ingred => this.updateIngredients(ingred, 1 / portion));
+
+    return Object.assign({}, recipe.recipe, {
+      perUnit: {
+        totalNutrients,
+        totalDaily,
+        totalWeight,
+        ingredients
+      }
+    }, {portion});
+  }
 }

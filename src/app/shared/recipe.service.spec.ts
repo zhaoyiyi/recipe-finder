@@ -2,7 +2,7 @@ import { RecipeService } from './recipe.service';
 import { Http, ConnectionBackend, RequestOptions, BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { ReflectiveInjector } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import 'rxjs/operator/skip';
 
 describe('RecipeService', () => {
   const fakeRecipe = {
@@ -27,23 +27,28 @@ describe('RecipeService', () => {
     expect(this.lastConnection.request.url).toMatch(/.+api\.edamam\.com\/search.+/, 'url invalid');
   });
 
-  // it('getRecipe() should return some recipes', () => {
-  //   this.lastConnection.mockRespond(new Response(new ResponseOptions({
-  //     body: JSON.stringify({hits: ['RECIPE_ONE', 'RECIPE_TWO']}),
-  //   })));
-  //   this.recipeService.getRecipe('sushi');
-  //   this.searchResult
-  //     .subscribe((recipes: String[]) => {
-  //       expect(recipes.length).toEqual(2, 'should contain given amount of heroes');
-  //       expect(recipes[0]).toEqual('RECIPE_ONE', ' RECIPE_ONE should be the first recipe');
-  //       expect(recipes[1]).toEqual('RECIPE_TWO', ' RECIPE_TWO should be the second recipe');
-  //     });
-  // });
-
-  it('getLastSearchResult() should return an observable', () => {
-    expect(this.recipeService.getLastSearchResult() instanceof Observable).toBe(true);
+  it('getRecipe() should return some recipes', () => {
+    this.lastConnection.mockRespond(new Response(new ResponseOptions({
+      body: JSON.stringify({
+        hits: [{
+          recipe: {
+            'yield': 1,
+            totalWeight: 123,
+            totalDaily: {},
+            totalNutrients: {},
+            ingredientLines: []
+          }
+        }]
+      }),
+    })));
+    this.recipeService.getRecipe('sushi');
+    this.recipeService.searchResult
+      .subscribe(
+        (recipes) => {
+          // expect(recipes.length).toEqual(1, 'should contain given amount of recipes');
+        }
+      );
   });
-
 
   it('addToShoppingList() should add new recipe to shopping list', () => {
     this.recipeService.addToShoppingList(fakeRecipe);
