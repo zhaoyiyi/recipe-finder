@@ -89,14 +89,14 @@ export class RecipeService {
   }
 
   private processData(recipe) {
-    const portion = recipe.recipe.yield;
+    const portion = recipe.yield;
     // get per unit values
-    const totalNutrients = this.getPerUnitValue(recipe.recipe.totalNutrients, 1 / portion);
-    const totalDaily = this.getPerUnitValue(recipe.recipe.totalDaily, 1 / portion);
-    const totalWeight = Math.round(recipe.recipe.totalWeight / portion);
-    const ingredients = recipe.recipe.ingredientLines.map(ingred => this.updateIngredients(ingred, 1 / portion));
+    const totalNutrients = this.getPerUnitValue(recipe.totalNutrients, 1 / portion);
+    const totalDaily = this.getPerUnitValue(recipe.totalDaily, 1 / portion);
+    const totalWeight = Math.round(recipe.totalWeight / portion);
+    const ingredients = recipe.ingredientLines.map(ingred => this.updateIngredients(ingred, 1 / portion));
 
-    return Object.assign({}, recipe.recipe, {
+    return Object.assign({}, recipe, {
       perUnit: {
         totalNutrients,
         totalDaily,

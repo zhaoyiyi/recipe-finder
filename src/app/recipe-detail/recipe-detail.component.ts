@@ -19,7 +19,7 @@ import { Recipe } from '../shared/Recipe';
             <md-input-container>
               <input mdInput #portion type="number" [value]="recipe.portion" (change)="onPortionChange(portion.value)">
             </md-input-container>
-            <md-checkbox class="example-margin" [(ngModel)]="useAdjusted">Use adjusted portion</md-checkbox>
+            <md-checkbox [(ngModel)]="useAdjusted">Use adjusted portion</md-checkbox>
           </div>
           
           <button md-raised-button (click)="addToShoppingList(recipe)" *ngIf="isInShoppingList">Remove from shopping list</button>
