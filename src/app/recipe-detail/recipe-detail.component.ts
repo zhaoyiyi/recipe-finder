@@ -105,8 +105,8 @@ export class RecipeDetailComponent implements OnInit {
     this.recipeService.currentRecipe.subscribe(
       (recipe: Recipe) => {
         this.recipe = recipe;
-        this.totalNutrients = this.recipeService.getPerUnitValue(this.recipe.perUnit.totalNutrients, recipe.portion);
-        this.totalDaily = this.recipeService.getPerUnitValue(this.recipe.perUnit.totalDaily, recipe.portion);
+        this.totalNutrients = this.recipeService.getNutrientsValue(this.recipe.perUnit.totalNutrients, recipe.portion);
+        this.totalDaily = this.recipeService.getNutrientsValue(this.recipe.perUnit.totalDaily, recipe.portion);
         this.isInShoppingList = this.recipeService.isInList(this.recipe);
       }
     );

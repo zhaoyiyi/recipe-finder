@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -69,7 +68,7 @@ export class RecipeService {
       );
   }
 
-  getPerUnitValue(nutrients: any, portion: number) {
+  getNutrientsValue(nutrients: any, portion: number) {
     const perUnitNutrient = {};
     Object.keys(nutrients).map(key => {
       perUnitNutrient[key] = Object.assign({}, nutrients[key], {quantity: nutrients[key].quantity * portion});
@@ -85,14 +84,14 @@ export class RecipeService {
       // round to 2 decimal places
       return (Math.round(+match * multiplier * 100) / 100).toString() || '';
       // it may become something like "0.5 0.25 cups of water", this line adds the two numbers up
-    }).replace(/(\d+\.?\d+) (\d+\.?\d+)/g, (match, a, b) => (+a / +b).toString());
+    }).replace(/(\d+\.?\d+) (\d+\.?\d+)/g, (match, a, b) => (+a + +b).toString());
   }
 
   private processData(recipe) {
     const portion = recipe.yield;
     // get per unit values
-    const totalNutrients = this.getPerUnitValue(recipe.totalNutrients, 1 / portion);
-    const totalDaily = this.getPerUnitValue(recipe.totalDaily, 1 / portion);
+    const totalNutrients = this.getNutrientsValue(recipe.totalNutrients, 1 / portion);
+    const totalDaily = this.getNutrientsValue(recipe.totalDaily, 1 / portion);
     const totalWeight = Math.round(recipe.totalWeight / portion);
     const ingredients = recipe.ingredientLines.map(ingred => this.updateIngredients(ingred, 1 / portion));
 
