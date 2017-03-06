@@ -29,7 +29,7 @@ import { Recipe } from '../shared/Recipe';
       
       <md-card class="ingredients">
         <md-list>
-          <h3 md-subheader>Original Recipe, {{ recipe.ingredientLines.length }} Ingredients</h3>
+          <h3 md-subheader>Original Recipe({{ recipe.yield }} servings)</h3>
           <md-divider></md-divider>
           <md-list-item *ngFor="let ingred of recipe.ingredientLines">
             <p md-line> {{ ingred }} </p>
@@ -39,7 +39,7 @@ import { Recipe } from '../shared/Recipe';
       
       <md-card class="ingredients" *ngIf="recipe.adjustedIngredients">
         <md-list>
-          <h3 md-subheader>Adjusted Ingredients</h3>
+          <h3 md-subheader>Adjusted Ingredients({{ recipe.portion }} servings)</h3>
           <md-divider></md-divider>
           <md-list-item *ngFor="let ingred of recipe.adjustedIngredients">
             <p md-line> {{ ingred }} </p>
