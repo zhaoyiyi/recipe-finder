@@ -112,6 +112,7 @@ export class ShoppingListComponent implements OnInit {
 
   ngOnInit() {
     this.recipes = this.recipeService.shoppingList;
+    this.selectedRecipe = this.recipes[Object.keys(this.recipes)[0]];
   }
   checkIngredient(ingredientName) {
     this.recipeService.checkIngredient(this.selectedRecipe, ingredientName);
