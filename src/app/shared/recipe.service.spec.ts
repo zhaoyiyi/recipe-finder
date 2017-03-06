@@ -27,27 +27,31 @@ describe('RecipeService', () => {
     expect(this.lastConnection.request.url).toMatch(/.+api\.edamam\.com\/search.+/, 'url invalid');
   });
 
-  it('getRecipe() should return some recipes', () => {
+  it('getRecipe() should return some recipes with modified data structure', () => {
+    this.recipeService.getRecipe('sushi');
+
     this.lastConnection.mockRespond(new Response(new ResponseOptions({
       body: JSON.stringify({
         hits: [{
           recipe: {
-            'yield': 1,
+            'yield': 10,
             totalWeight: 123,
             totalDaily: {},
             totalNutrients: {},
-            ingredientLines: []
+            ingredientLines: ['100 ml water']
           }
         }]
       }),
     })));
-    this.recipeService.getRecipe('sushi');
-    this.recipeService.searchResult
-      .subscribe(
-        (recipes) => {
-          // expect(recipes.length).toEqual(1, 'should contain given amount of recipes');
-        }
-      );
+    this.recipeService.searchResult.subscribe(
+      (recipes) => {
+        expect(recipes.length).toEqual(1, 'should contain given amount of recipes');
+        expect(recipes[0].hasOwnProperty('perUnit')).toBe(true, 'should create perUnit property');
+        expect(recipes[0].portion).toEqual(10, 'should set default portion to the value of yield');
+        expect(recipes[0].perUnit.ingredients[0]).toEqual('10 ml water', 'should convert ingredients to per unit value');
+        expect(recipes[0].perUnit.totalWeight).toEqual(12, 'should convert totalWeight to per unit value');
+      }
+    );
   });
 
   it('addToShoppingList() should add new recipe to shopping list', () => {
