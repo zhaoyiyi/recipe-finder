@@ -11,7 +11,6 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeService } from './shared/recipe.service';
 import { NutritionComponent } from './recipe-detail/nutrition.component';
 import { NutritionPipe } from './recipe-detail/nutrition.pipe';
-import { SearchService } from './search/search.service';
 import { BackButtonDirective } from './shared/back-button.directive';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingActionsComponent } from './shopping-list/shopping-actions.component';
@@ -36,7 +35,7 @@ import { EmailDialogComponent } from './shopping-list/email-dialog.component';
     MaterialModule,
     AppRoutingModule,
   ],
-  providers: [RecipeService, SearchService],
+  providers: [RecipeService],
   bootstrap: [AppComponent],
   entryComponents: [EmailDialogComponent]
 })

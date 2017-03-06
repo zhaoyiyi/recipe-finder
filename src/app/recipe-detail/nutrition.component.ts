@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
     <md-card>
     <div class="nutrition">
       <h2>Nutrition Fact</h2>
-      <p>per 1 serving ({{totalWeight | number: '1.0-0'}}g)</p>
+      <p>per {{ servings }} serving ({{totalWeight * servings | number: '1.0-0'}}g)</p>
       <table class="nutrition-table">
         <tbody>
         <tr>
@@ -116,6 +116,7 @@ export class NutritionComponent implements OnInit {
   @Input() totalWeight: number;
   @Input() totalNutrients;
   @Input() totalDaily;
+  @Input() servings: number;
 
   constructor() { }
 

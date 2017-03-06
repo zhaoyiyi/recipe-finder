@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SearchComponent } from './search.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
-import { SearchService } from './search.service';
 import { RecipeService } from '../shared/recipe.service';
 import { Router } from '@angular/router';
 
@@ -30,7 +29,6 @@ describe('SearchComponent', () => {
       imports: [FormsModule, MaterialModule],
       declarations: [SearchComponent],
       providers: [
-        {provide: SearchService, useValue: searchServiceStub},
         {provide: RecipeService, useValue: recipeServiceStub},
         {provide: Router, useValue: routerStub},
       ]
