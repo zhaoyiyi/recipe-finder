@@ -1,6 +1,7 @@
-# [RecipeFinder](http://recipe-finder.yizhao.me)
+# Recipe Finder
+http://recipe-finder.yizhao.me
 
-[Vue.js Version](https://github.com/zhaoyiyi/recipe-finder-vue)
+[Vue.js version code](https://github.com/zhaoyiyi/recipe-finder-vue)
 
 A simple app that finds recipes and generates grocery list. Built with Angular.
 
